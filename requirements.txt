@@ -1,0 +1,6 @@
+sanic == 22.6.2
+sanic-openapi
+loko-extensions
+loko-client
+sagemaker
+boto3

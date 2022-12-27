@@ -1,0 +1,176 @@
+[
+ {
+  "name": "Sagemaker",
+  "description": "### Description\nThe Sagemaker component allows to interact with the AWS APIs in order to train machine learning algorithms. \nOnce a model has been trained you can deploy the algorithm and start to make predictions of new data streams. \nModels and datasets will be loaded and stored on a configured S3 bucket in the training phase. \nYou can also make inference with already trained models on Sagemaker.\n### Configuration\nSagemaker configurations are set in the *config.json* file. \n### Input\n**FIT** input accepts a train and an evaluate dataset or only the train one.\nIn the first case you have to provide a dictionary containing the keys *train_data* and *validation_data*.\n\nExample:\n```json\n{\"train_data\": [\n        {\"target\":0,\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n        ],\n \"validation_data\": [\n        {\"target\":2,\"sepal length\":6.5,\"sepal width\":3,\"petal length\":5.2,\"petal width\":2},\n        {\"target\":2,\"sepal length\":6.2,\"sepal width\":3.4,\"petal length\":5.4,\"petal width\":2.3},\n        {\"target\":2,\"sepal length\":5.9,\"sepal width\":3,\"petal length\":5.1,\"petal width\":1.8}\n        ]}\n```\nOtherwise, you can directly pass your training dataset.\n\nExample:\n```json\n    [\n        {\"target\":0,\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n    ]\n```\nThe first column of the dataset is used as the model target. \n\nYou have to preprocess your data first.\n\n**PREDICT** input accepts a dataset without target column.\n\nExample:\n```json\n    [\n        {\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n    ]\n```\n",
+  "group": "Custom",
+  "icon": "RiTyphoonFill",
+  "click": null,
+  "events": {
+   "type": "sagemaker",
+   "field": "model_name_fit"
+  },
+  "configured": false,
+  "inputs": [
+   {
+    "id": "fit",
+    "label": "fit",
+    "service": "fit",
+    "to": "fit"
+   },
+   {
+    "id": "predict",
+    "label": "predict",
+    "service": "predict",
+    "to": "predict"
+   },
+   {
+    "id": "delete",
+    "label": "delete",
+    "service": "delete",
+    "to": "delete"
+   }
+  ],
+  "outputs": [
+   {
+    "id": "fit",
+    "label": "fit"
+   },
+   {
+    "id": "predict",
+    "label": "predict"
+   },
+   {
+    "id": "delete",
+    "label": "delete"
+   }
+  ],
+  "options": {
+   "values": {
+    "algorithm": "xgboost:1.5-1",
+    "model_name_fit": "sagemaker/DEMO-xgboost",
+    "instance_type_fit": "ml.m5.large",
+    "instance_type_predict": "ml.m5.large",
+    "hp": "{\"max_depth\": 5, \"eta\": 0.2, \"gamma\": 4, \"min_child_weight\": 6, \"subsample\": 0.8, \"verbosity\": 0, \"objective\": \"multi:softmax\", \"num_round\": 100}",
+    "delete_endpoint": true,
+    "delete_endpoint_config": true,
+    "delete_model": true
+   },
+   "args": [
+    {
+     "name": "algorithm",
+     "type": "asyncSelect",
+     "label": "Algorithm",
+     "helper": "Insert algorithm sagemaker image",
+     "group": "",
+     "value": "xgboost:1.5-1",
+     "description": "Algorithm type and version",
+     "validation": {
+      "required": "Required field"
+     },
+     "url": "http://localhost:9999/routes/loko_sagemaker/algorithms"
+    },
+    {
+     "name": "oalgorithm",
+     "type": "dynamic",
+     "label": "Other Algorithm",
+     "helper": "",
+     "group": "",
+     "value": null,
+     "description": "",
+     "validation": {
+      "required": "Required field"
+     },
+     "parent": "algorithm",
+     "condition": "{parent}==='other'",
+     "dynamicType": "text",
+     "options": null,
+     "fields": null,
+     "url": null
+    },
+    {
+     "name": "model_name_fit",
+     "type": "text",
+     "label": "Model Name",
+     "helper": "Insert model name",
+     "group": "Fit",
+     "value": "sagemaker/DEMO-xgboost",
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "instance_type_fit",
+     "type": "asyncSelect",
+     "label": "Instance Type",
+     "helper": "",
+     "group": "Fit",
+     "value": "ml.m5.large",
+     "description": "The EC2 instance type to deploy this Model to. For example, \u2018ml.p2.xlarge\u2019, or \u2018local\u2019 for local mode. If not using serverless inference, then it is required to deploy a model.",
+     "validation": null,
+     "url": "http://localhost:9999/routes/loko_sagemaker/instances"
+    },
+    {
+     "name": "model_name_predict",
+     "type": "asyncSelect",
+     "label": "Model Name",
+     "helper": "Insert model name",
+     "group": "Predict",
+     "value": null,
+     "description": "",
+     "validation": null,
+     "url": "http://localhost:9999/routes/loko_sagemaker/models"
+    },
+    {
+     "name": "instance_type_predict",
+     "type": "asyncSelect",
+     "label": "Instance Type",
+     "helper": "",
+     "group": "Predict",
+     "value": "ml.m5.large",
+     "description": "The EC2 instance type to deploy this Model to. For example, \u2018ml.p2.xlarge\u2019, or \u2018local\u2019 for local mode. If not using serverless inference, then it is required to deploy a model.",
+     "validation": null,
+     "url": "http://localhost:9999/routes/loko_sagemaker/instances"
+    },
+    {
+     "name": "hp",
+     "type": "code",
+     "label": "Hyper-Parameters",
+     "helper": "",
+     "group": "Fit",
+     "value": "{\"max_depth\": 5, \"eta\": 0.2, \"gamma\": 4, \"min_child_weight\": 6, \"subsample\": 0.8, \"verbosity\": 0, \"objective\": \"multi:softmax\", \"num_round\": 100}",
+     "description": "Json format hyperparameters configuration based on the algorithm type.",
+     "validation": null
+    },
+    {
+     "name": "delete_endpoint",
+     "type": "boolean",
+     "label": "Delete Endpoint",
+     "helper": "",
+     "group": "Delete",
+     "value": true,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "delete_endpoint_config",
+     "type": "boolean",
+     "label": "Delete Endpoint Config",
+     "helper": "",
+     "group": "Delete",
+     "value": true,
+     "description": "",
+     "validation": null
+    },
+    {
+     "name": "delete_model",
+     "type": "boolean",
+     "label": "Delete Model",
+     "helper": "",
+     "group": "Delete",
+     "value": true,
+     "description": "",
+     "validation": null
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,11 @@
+{
+  "main": {
+    "environment": {
+        "AWS_ACCESS_KEY_ID": "<insert your key here>",
+        "AWS_SECRET_ACCESS_KEY": "<insert your key here>",
+        "ROLE": "<insert your key here>",
+        "BUCKET": "<insert your key here>",
+        "REGION_NAME": "<insert your key here>"
+    }
+  }
+}

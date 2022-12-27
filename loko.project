@@ -1,0 +1,1103 @@
+{
+  "name": "loko_sagemaker",
+  "id": "loko_sagemaker",
+  "description": "",
+  "created_on": "17/11/2022, 08:18:27",
+  "last_modify": "25/11/2022, 16:45:55",
+  "graphs": {
+    "main": {
+      "nodes": [
+        {
+          "id": "63b8360b-c976-4fdc-a502-92bdd5b5ec5b",
+          "position": {
+            "x": 497,
+            "y": 104
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "CSV Reader",
+            "events": null,
+            "description": "### Description\nThe CSV READER component allows reading files in csv format. \n\nYou have the possibility to set a separator using the **Separator** parameter. The **Infer types** parameter allows the automatic transformation of the type of non-textual fields.\n\n### Input\nThe input required by this component is the file path in PosixPath format. However, the file path can also be defined when the component is created, in which case no input is required.\n\n### Output\nThe submitted file is returned row by row, where each row is represented by a dictionary that has the column names as keys.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "helper": "choose a file or read input"
+                },
+                {
+                  "name": "separator",
+                  "type": "text",
+                  "label": "Separator"
+                },
+                {
+                  "name": "df",
+                  "type": "boolean",
+                  "label": "Dask Dataframe"
+                },
+                {
+                  "name": "infer_type",
+                  "type": "boolean",
+                  "label": "Infer types"
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileChart2Fill",
+              "values": {
+                "comment": "",
+                "alias": "FIT DATASET",
+                "debug": false,
+                "separator": ",",
+                "df": false,
+                "infer_type": true,
+                "propagate": true,
+                "value": {
+                  "name": "iris.csv",
+                  "path": "data/datasets/iris.csv",
+                  "parent": "data/datasets",
+                  "isDir": false,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 497,
+            "y": 104
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "68b3edbe-ebb5-4c1f-b3b0-e9313e6dd6ec",
+          "position": {
+            "x": 1131,
+            "y": 54
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Grouper",
+            "events": null,
+            "description": "### Description\nThe GROUPER component is used to group the elements received in input. The items will be returned in batches with a maximum size equal to **Group size**.\n\n### Input\nIn this case there is no fixed input format.\n\n### Output\nIn output lists of elements received in input with a maximum length equal to **Group size**.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "n",
+                  "label": "Group size",
+                  "type": "number"
+                }
+              ],
+              "click": null,
+              "icon": "RiGroupFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "n": "100000"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1131,
+            "y": 54
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "d7e4ba88-f4c0-4b87-8310-a148c693c98d",
+          "position": {
+            "x": 467,
+            "y": 289
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 88,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "CSV Reader",
+            "events": null,
+            "description": "### Description\nThe CSV READER component allows reading files in csv format. \n\nYou have the possibility to set a separator using the **Separator** parameter. The **Infer types** parameter allows the automatic transformation of the type of non-textual fields.\n\n### Input\nThe input required by this component is the file path in PosixPath format. However, the file path can also be defined when the component is created, in which case no input is required.\n\n### Output\nThe submitted file is returned row by row, where each row is represented by a dictionary that has the column names as keys.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Inputs",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "value",
+                  "type": "files",
+                  "label": "File",
+                  "fragment": "files",
+                  "helper": "choose a file or read input"
+                },
+                {
+                  "name": "separator",
+                  "type": "text",
+                  "label": "Separator"
+                },
+                {
+                  "name": "df",
+                  "type": "boolean",
+                  "label": "Dask Dataframe"
+                },
+                {
+                  "name": "infer_type",
+                  "type": "boolean",
+                  "label": "Infer types"
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                }
+              ],
+              "click": "Send file",
+              "icon": "RiFileChart2Fill",
+              "values": {
+                "comment": "",
+                "alias": "PREDICT_DATASET",
+                "debug": false,
+                "separator": ",",
+                "df": false,
+                "infer_type": true,
+                "propagate": true,
+                "value": {
+                  "name": "iris.csv",
+                  "path": "data/datasets/iris.csv",
+                  "parent": "data/datasets",
+                  "isDir": false,
+                  "hidden": false
+                }
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 467,
+            "y": 289
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "99ab3736-94ef-4fd7-b00d-e76e1492844a",
+          "position": {
+            "x": 816,
+            "y": 115
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "row = dict(target=data.pop('target'))\nrow.update(data)\nreturn row"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 816,
+            "y": 115
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "1b70016c-c5c4-4bb8-b0fb-13dce60daa19",
+          "position": {
+            "x": 804,
+            "y": 247
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Sampler",
+            "events": null,
+            "description": "### Description\nThe SAMPLER component is used to sample the elements received in input. The parameter **Sample size** represents the number of items to receive as output.\n\n### Input\nIn this case there is no fixed input format.\n\n### Output\nAre returned **Sample size** items chosen at random.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "k",
+                  "type": "number",
+                  "label": "Sample size"
+                }
+              ],
+              "click": null,
+              "icon": "RiBarChartGroupedFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "k": "2"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 804,
+            "y": 247
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "785f192a-538d-441a-abba-85daf6277481",
+          "position": {
+            "x": 1053,
+            "y": 215
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Selector",
+            "events": null,
+            "description": "### Description\nThe SELECTOR component is used to select the value of one or more object keys. The required key/s are defined using the parameter **Keys**.\n\nIn order to add other keys you need to click on the **\"Add field\"** button.\n\nIf the field **Ignore Error** is toggled, missing keys are ignored.\n\nIt's also possible to select nested key, just by writing them in a *key* field, and seperating them using a full stop. Let's consider the object in the example below: if you want to have access to the content of the \"key3\" object, you need to use the following notation \"key1.key2.key3\".\n\n\n```json\n {\"key1\":{\"key2\":{\"key3\":[\"val1\", \"val2\", \"val3\"]}}} \n```\n\n\n\n### Input\n\nThe input consists of a dictionary.\n\n\n\n### Output\n\nThe output is the value of the required key of the dictionary received as input, if only one key is selected; otherwise it's an object which contains the keys specified and their value.\n",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "ignore_err",
+                  "label": "Ignor Error",
+                  "type": "boolean",
+                  "description": "Choose whether to ignore error in case of a missing key or not"
+                },
+                {
+                  "name": "exclude",
+                  "label": "Exclude Keys",
+                  "type": "boolean",
+                  "description": "If enabled, the output contains the whole input object excluding the specified keys; otherwise, only the specified keys are returned"
+                },
+                {
+                  "name": "keys",
+                  "label": "Keys",
+                  "type": "multiKeyValue",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "description": "Name of the key/s to select from the incoming message",
+                  "fields": [
+                    {
+                      "name": "k",
+                      "placeholder": "key",
+                      "validation": {
+                        "required": "Required field"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "click": null,
+              "icon": "RiCursorFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "ignore_err": false,
+                "exclude": true,
+                "keys": [
+                  {
+                    "k": "target",
+                    "id": "d8fb4a18-d189-4212-8a30-c6809f5a0d58"
+                  }
+                ]
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1053,
+            "y": 215
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "d110bdf1-44f5-4d6d-a459-09bb84256f87",
+          "position": {
+            "x": 1301,
+            "y": 209
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Grouper",
+            "events": null,
+            "description": "### Description\nThe GROUPER component is used to group the elements received in input. The items will be returned in batches with a maximum size equal to **Group size**.\n\n### Input\nIn this case there is no fixed input format.\n\n### Output\nIn output lists of elements received in input with a maximum length equal to **Group size**.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "n",
+                  "label": "Group size",
+                  "type": "number"
+                }
+              ],
+              "click": null,
+              "icon": "RiGroupFill",
+              "values": {
+                "n": 10,
+                "debug": true
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1301,
+            "y": 209
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "692cab5b-c14e-4d76-87e8-189bb83d1b1b",
+          "position": {
+            "x": 1063,
+            "y": 440
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "comment": "",
+                "alias": "DELETE MODEL/ENDPOINTS",
+                "debug": false,
+                "type": "String",
+                "value": "Hello world!"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1063,
+            "y": 440
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "ed504d89-d757-405d-8203-5612a2adad5d",
+          "position": {
+            "x": 1545,
+            "y": 223
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Sagemaker",
+            "events": {
+              "type": "sagemaker",
+              "field": "model_name_fit"
+            },
+            "description": "### Description\nThe Sagemaker component allows to interact with the AWS APIs in order to train machine learning algorithms. \nOnce a model has been trained you can deploy the algorithm and start to make predictions of new data streams. \nModels and datasets will be loaded and stored on a configured S3 bucket in the training phase. \nYou can also make inference with already trained models on Sagemaker.\n### Configuration\nSagemaker configurations are set in the *config.json* file. \n### Input\n**FIT** input accepts a train and an evaluate dataset or only the train one.\nIn the first case you have to provide a dictionary containing the keys *train_data* and *validation_data*.\n\nExample:\n```json\n{\"train_data\": [\n        {\"target\":0,\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n        ],\n \"validation_data\": [\n        {\"target\":2,\"sepal length\":6.5,\"sepal width\":3,\"petal length\":5.2,\"petal width\":2},\n        {\"target\":2,\"sepal length\":6.2,\"sepal width\":3.4,\"petal length\":5.4,\"petal width\":2.3},\n        {\"target\":2,\"sepal length\":5.9,\"sepal width\":3,\"petal length\":5.1,\"petal width\":1.8}\n        ]}\n```\nOtherwise, you can directly pass your training dataset.\n\nExample:\n```json\n    [\n        {\"target\":0,\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"target\":0,\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n    ]\n```\nThe first column of the dataset is used as the model target. \n\nYou have to preprocess your data first.\n\n**PREDICT** input accepts a dataset without target column.\n\nExample:\n```json\n    [\n        {\"sepal length\":5.1,\"sepal width\":3.5,\"petal length\":1.4,\"petal width\":0.2},\n        {\"sepal length\":4.9,\"sepal width\":3,\"petal length\":1.4,\"petal width\":0.2},\n        {\"sepal length\":4.7,\"sepal width\":3.2,\"petal length\":1.3,\"petal width\":0.2}\n    ]\n```\n",
+            "inputs": [
+              {
+                "id": "fit",
+                "label": "fit",
+                "service": "fit",
+                "to": "fit"
+              },
+              {
+                "id": "predict",
+                "label": "predict",
+                "service": "predict",
+                "to": "predict"
+              },
+              {
+                "id": "delete",
+                "label": "delete",
+                "service": "delete",
+                "to": "delete"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "fit",
+                "label": "fit"
+              },
+              {
+                "id": "predict",
+                "label": "predict"
+              },
+              {
+                "id": "delete",
+                "label": "delete"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Custom",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "algorithm",
+                  "type": "asyncSelect",
+                  "label": "Algorithm",
+                  "helper": "Insert algorithm sagemaker image",
+                  "group": "",
+                  "value": "xgboost:1.5-1",
+                  "description": "Algorithm type and version",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "url": "http://localhost:9999/routes/loko_sagemaker/algorithms"
+                },
+                {
+                  "name": "oalgorithm",
+                  "type": "dynamic",
+                  "label": "Other Algorithm",
+                  "helper": "",
+                  "group": "",
+                  "value": null,
+                  "description": "",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "parent": "algorithm",
+                  "condition": "{parent}==='other'",
+                  "dynamicType": "text",
+                  "options": null,
+                  "fields": null,
+                  "url": null
+                },
+                {
+                  "name": "model_name_fit",
+                  "type": "text",
+                  "label": "Model Name",
+                  "helper": "Insert model name",
+                  "group": "Fit",
+                  "value": "sagemaker/DEMO-xgboost",
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "instance_type_fit",
+                  "type": "asyncSelect",
+                  "label": "Instance Type",
+                  "helper": "",
+                  "group": "Fit",
+                  "value": "ml.m5.large",
+                  "description": "The EC2 instance type to deploy this Model to. For example, \u2018ml.p2.xlarge\u2019, or \u2018local\u2019 for local mode. If not using serverless inference, then it is required to deploy a model.",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko_sagemaker/instances"
+                },
+                {
+                  "name": "model_name_predict",
+                  "type": "asyncSelect",
+                  "label": "Model Name",
+                  "helper": "Insert model name",
+                  "group": "Predict",
+                  "value": null,
+                  "description": "",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko_sagemaker/models"
+                },
+                {
+                  "name": "instance_type_predict",
+                  "type": "asyncSelect",
+                  "label": "Instance Type",
+                  "helper": "",
+                  "group": "Predict",
+                  "value": "ml.m5.large",
+                  "description": "The EC2 instance type to deploy this Model to. For example, \u2018ml.p2.xlarge\u2019, or \u2018local\u2019 for local mode. If not using serverless inference, then it is required to deploy a model.",
+                  "validation": null,
+                  "url": "http://localhost:9999/routes/loko_sagemaker/instances"
+                },
+                {
+                  "name": "hp",
+                  "type": "code",
+                  "label": "Hyper-Parameters",
+                  "helper": "",
+                  "group": "Fit",
+                  "value": "{\"max_depth\": 5, \"eta\": 0.2, \"gamma\": 4, \"min_child_weight\": 6, \"subsample\": 0.8, \"verbosity\": 0, \"objective\": \"multi:softmax\", \"num_round\": 100}",
+                  "description": "Json format hyperparameters configuration based on the algorithm type.",
+                  "validation": null
+                },
+                {
+                  "name": "delete_endpoint",
+                  "type": "boolean",
+                  "label": "Delete Endpoint",
+                  "helper": "",
+                  "group": "Delete",
+                  "value": true,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "delete_endpoint_config",
+                  "type": "boolean",
+                  "label": "Delete Endpoint Config",
+                  "helper": "",
+                  "group": "Delete",
+                  "value": true,
+                  "description": "",
+                  "validation": null
+                },
+                {
+                  "name": "delete_model",
+                  "type": "boolean",
+                  "label": "Delete Model",
+                  "helper": "",
+                  "group": "Delete",
+                  "value": true,
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiTyphoonFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "model_name_fit": "sagemaker/DEMO-xgboost",
+                "delete_endpoint": true,
+                "delete_endpoint_config": true,
+                "delete_model": true,
+                "hp": "{\"max_depth\": 5, \"eta\": 0.2, \"gamma\": 4, \"min_child_weight\": 6, \"subsample\": 0.8, \"verbosity\": 0, \"objective\": \"multi:softmax\", \"num_round\": 100}",
+                "algorithm": "xgboost:1.5-1",
+                "instance_type_fit": "ml.m5.large",
+                "model_name_predict": "sagemaker/DEMO-xgboost",
+                "instance_type_predict": "ml.m5.large"
+              }
+            },
+            "locked": null,
+            "status": " "
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 1545,
+            "y": 223
+          },
+          "__class__": "Node"
+        }
+      ],
+      "edges": [
+        {
+          "id": "reactflow__edge-63b8360b-c976-4fdc-a502-92bdd5b5ec5boutput-99ab3736-94ef-4fd7-b00d-e76e1492844ainput",
+          "source": "63b8360b-c976-4fdc-a502-92bdd5b5ec5b",
+          "sourceHandle": "output",
+          "target": "99ab3736-94ef-4fd7-b00d-e76e1492844a",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-99ab3736-94ef-4fd7-b00d-e76e1492844aoutput-68b3edbe-ebb5-4c1f-b3b0-e9313e6dd6ecinput",
+          "source": "99ab3736-94ef-4fd7-b00d-e76e1492844a",
+          "sourceHandle": "output",
+          "target": "68b3edbe-ebb5-4c1f-b3b0-e9313e6dd6ec",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-d7e4ba88-f4c0-4b87-8310-a148c693c98doutput-1b70016c-c5c4-4bb8-b0fb-13dce60daa19input",
+          "source": "d7e4ba88-f4c0-4b87-8310-a148c693c98d",
+          "sourceHandle": "output",
+          "target": "1b70016c-c5c4-4bb8-b0fb-13dce60daa19",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#F8637A",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-1b70016c-c5c4-4bb8-b0fb-13dce60daa19output-785f192a-538d-441a-abba-85daf6277481input",
+          "source": "1b70016c-c5c4-4bb8-b0fb-13dce60daa19",
+          "sourceHandle": "output",
+          "target": "785f192a-538d-441a-abba-85daf6277481",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-785f192a-538d-441a-abba-85daf6277481output-d110bdf1-44f5-4d6d-a459-09bb84256f87input",
+          "source": "785f192a-538d-441a-abba-85daf6277481",
+          "sourceHandle": "output",
+          "target": "d110bdf1-44f5-4d6d-a459-09bb84256f87",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-68b3edbe-ebb5-4c1f-b3b0-e9313e6dd6ecoutput-ed504d89-d757-405d-8203-5612a2adad5dfit",
+          "source": "68b3edbe-ebb5-4c1f-b3b0-e9313e6dd6ec",
+          "sourceHandle": "output",
+          "target": "ed504d89-d757-405d-8203-5612a2adad5d",
+          "targetHandle": "fit",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-d110bdf1-44f5-4d6d-a459-09bb84256f87output-ed504d89-d757-405d-8203-5612a2adad5dpredict",
+          "source": "d110bdf1-44f5-4d6d-a459-09bb84256f87",
+          "sourceHandle": "output",
+          "target": "ed504d89-d757-405d-8203-5612a2adad5d",
+          "targetHandle": "predict",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-692cab5b-c14e-4d76-87e8-189bb83d1b1boutput-ed504d89-d757-405d-8203-5612a2adad5ddelete",
+          "source": "692cab5b-c14e-4d76-87e8-189bb83d1b1b",
+          "sourceHandle": "output",
+          "target": "ed504d89-d757-405d-8203-5612a2adad5d",
+          "targetHandle": "delete",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        }
+      ],
+      "__class__": "Graph"
+    }
+  },
+  "open": [
+    "main"
+  ],
+  "active": "main",
+  "version": "1.0.0",
+  "__class__": "Project"
+}
